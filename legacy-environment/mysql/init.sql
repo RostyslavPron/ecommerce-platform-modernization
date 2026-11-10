@@ -1,0 +1,1 @@
+-- TODO: Add the initial MySQL schema and seed data.
