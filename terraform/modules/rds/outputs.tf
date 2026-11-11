@@ -9,3 +9,7 @@ output "db_name" {
 output "arn" {
   value = aws_db_instance.main.arn
 }
+
+output "identifier" {
+  value = aws_db_instance.main.identifier
+}
