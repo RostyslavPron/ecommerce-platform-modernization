@@ -23,11 +23,9 @@ resource "aws_cloudfront_distribution" "main" {
 
   default_cache_behavior {
 
-    target_origin_id =
-      "${var.project_name}-alb-origin"
+    target_origin_id = "${var.project_name}-alb-origin"
 
-    viewer_protocol_policy =
-      "redirect-to-https"
+    viewer_protocol_policy = "redirect-to-https"
 
     allowed_methods = [
       "GET",
@@ -63,5 +61,9 @@ resource "aws_cloudfront_distribution" "main" {
 
   viewer_certificate {
     cloudfront_default_certificate = true
+  }
+
+  tags = {
+    Name = "${var.project_name}-cloudfront"
   }
 }

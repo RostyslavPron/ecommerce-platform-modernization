@@ -1,3 +1,13 @@
+data "aws_secretsmanager_secret_version" "database" {
+  secret_id = var.database_secret_arn
+}
+
+locals {
+  db_credentials = jsondecode(
+    data.aws_secretsmanager_secret_version.database.secret_string
+  )
+}
+
 resource "aws_db_subnet_group" "main" {
   name = "${var.project_name}-db-subnet-group"
 
@@ -9,7 +19,6 @@ resource "aws_db_subnet_group" "main" {
 }
 
 resource "aws_db_instance" "main" {
-
   identifier = "${var.project_name}-mysql"
 
   engine         = "mysql"
@@ -20,7 +29,8 @@ resource "aws_db_instance" "main" {
   allocated_storage = 20
   storage_type      = "gp3"
 
-  db_name  = "ecommerce"
+  db_name = "ecommerce"
+
   username = local.db_credentials.username
   password = local.db_credentials.password
 
@@ -38,21 +48,11 @@ resource "aws_db_instance" "main" {
     var.rds_security_group_id
   ]
 
-  db_subnet_group_name =
-    aws_db_subnet_group.main.name
+  db_subnet_group_name = aws_db_subnet_group.main.name
 
   skip_final_snapshot = true
 
   tags = {
     Name = "${var.project_name}-mysql"
   }
-}
-
-data "aws_secretsmanager_secret_version" "database" {
-  secret_id = var.database_secret_arn
-}
-
-locals {
-  db_credentials =
-    jsondecode(data.aws_secretsmanager_secret_version.database.secret_string)
 }
