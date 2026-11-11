@@ -116,3 +116,15 @@ module "cloudfront" {
   alb_dns_name =
     module.alb.alb_dns_name
 }
+
+module "route53" {
+  source = "../../modules/route53"
+
+  domain_name = var.domain_name
+
+  cloudfront_domain_name =
+    module.cloudfront.distribution_domain_name
+
+  cloudfront_hosted_zone_id =
+    module.cloudfront.hosted_zone_id
+}
