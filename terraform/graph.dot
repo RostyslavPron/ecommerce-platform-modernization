@@ -1,0 +1,164 @@
+digraph G {
+  rankdir = "RL";
+  node [shape = rect, fontname = "sans-serif"];
+  subgraph "cluster_module.environment.module.alb" {
+    label = "module.environment.module.alb"
+    fontname = "sans-serif"
+    "module.environment.module.alb.aws_lb.main" [label="aws_lb.main"];
+    "module.environment.module.alb.aws_lb_listener.http" [label="aws_lb_listener.http"];
+    "module.environment.module.alb.aws_lb_target_group.ecs" [label="aws_lb_target_group.ecs"];
+  }
+  subgraph "cluster_module.environment.module.cloudfront" {
+    label = "module.environment.module.cloudfront"
+    fontname = "sans-serif"
+    "module.environment.module.cloudfront.aws_cloudfront_distribution.main" [label="aws_cloudfront_distribution.main"];
+  }
+  subgraph "cluster_module.environment.module.cloudwatch" {
+    label = "module.environment.module.cloudwatch"
+    fontname = "sans-serif"
+    "module.environment.module.cloudwatch.aws_cloudwatch_dashboard.main" [label="aws_cloudwatch_dashboard.main"];
+  }
+  subgraph "cluster_module.environment.module.ecr" {
+    label = "module.environment.module.ecr"
+    fontname = "sans-serif"
+    "module.environment.module.ecr.aws_ecr_lifecycle_policy.app" [label="aws_ecr_lifecycle_policy.app"];
+    "module.environment.module.ecr.aws_ecr_repository.app" [label="aws_ecr_repository.app"];
+  }
+  subgraph "cluster_module.environment.module.ecs" {
+    label = "module.environment.module.ecs"
+    fontname = "sans-serif"
+    "module.environment.module.ecs.aws_appautoscaling_policy.cpu" [label="aws_appautoscaling_policy.cpu"];
+    "module.environment.module.ecs.aws_appautoscaling_policy.memory" [label="aws_appautoscaling_policy.memory"];
+    "module.environment.module.ecs.aws_appautoscaling_target.ecs" [label="aws_appautoscaling_target.ecs"];
+    "module.environment.module.ecs.aws_cloudwatch_log_group.ecs" [label="aws_cloudwatch_log_group.ecs"];
+    "module.environment.module.ecs.aws_ecs_cluster.main" [label="aws_ecs_cluster.main"];
+    "module.environment.module.ecs.aws_ecs_service.app" [label="aws_ecs_service.app"];
+    "module.environment.module.ecs.aws_ecs_task_definition.app" [label="aws_ecs_task_definition.app"];
+    "module.environment.module.ecs.aws_iam_role.ecs_task_execution_role" [label="aws_iam_role.ecs_task_execution_role"];
+    "module.environment.module.ecs.aws_iam_role_policy_attachment.ecs_execution" [label="aws_iam_role_policy_attachment.ecs_execution"];
+  }
+  subgraph "cluster_module.environment.module.rds" {
+    label = "module.environment.module.rds"
+    fontname = "sans-serif"
+    "module.environment.module.rds.data.aws_secretsmanager_secret_version.database" [label="data.aws_secretsmanager_secret_version.database"];
+    "module.environment.module.rds.aws_db_instance.main" [label="aws_db_instance.main"];
+    "module.environment.module.rds.aws_db_subnet_group.main" [label="aws_db_subnet_group.main"];
+  }
+  subgraph "cluster_module.environment.module.route53" {
+    label = "module.environment.module.route53"
+    fontname = "sans-serif"
+    "module.environment.module.route53.aws_route53_record.root" [label="aws_route53_record.root"];
+    "module.environment.module.route53.aws_route53_zone.main" [label="aws_route53_zone.main"];
+  }
+  subgraph "cluster_module.environment.module.s3" {
+    label = "module.environment.module.s3"
+    fontname = "sans-serif"
+    "module.environment.module.s3.aws_s3_bucket.assets" [label="aws_s3_bucket.assets"];
+    "module.environment.module.s3.aws_s3_bucket_lifecycle_configuration.assets" [label="aws_s3_bucket_lifecycle_configuration.assets"];
+    "module.environment.module.s3.aws_s3_bucket_public_access_block.assets" [label="aws_s3_bucket_public_access_block.assets"];
+    "module.environment.module.s3.aws_s3_bucket_server_side_encryption_configuration.assets" [label="aws_s3_bucket_server_side_encryption_configuration.assets"];
+    "module.environment.module.s3.aws_s3_bucket_versioning.assets" [label="aws_s3_bucket_versioning.assets"];
+  }
+  subgraph "cluster_module.environment.module.secrets_manager" {
+    label = "module.environment.module.secrets_manager"
+    fontname = "sans-serif"
+    "module.environment.module.secrets_manager.aws_secretsmanager_secret.database" [label="aws_secretsmanager_secret.database"];
+    "module.environment.module.secrets_manager.aws_secretsmanager_secret_version.database" [label="aws_secretsmanager_secret_version.database"];
+    "module.environment.module.secrets_manager.random_password.db" [label="random_password.db"];
+  }
+  subgraph "cluster_module.environment.module.security_groups" {
+    label = "module.environment.module.security_groups"
+    fontname = "sans-serif"
+    "module.environment.module.security_groups.aws_security_group.alb" [label="aws_security_group.alb"];
+    "module.environment.module.security_groups.aws_security_group.ecs" [label="aws_security_group.ecs"];
+    "module.environment.module.security_groups.aws_security_group.rds" [label="aws_security_group.rds"];
+  }
+  subgraph "cluster_module.environment.module.vpc" {
+    label = "module.environment.module.vpc"
+    fontname = "sans-serif"
+    "module.environment.module.vpc.aws_eip.nat" [label="aws_eip.nat"];
+    "module.environment.module.vpc.aws_internet_gateway.main" [label="aws_internet_gateway.main"];
+    "module.environment.module.vpc.aws_nat_gateway.main" [label="aws_nat_gateway.main"];
+    "module.environment.module.vpc.aws_route_table.private_app" [label="aws_route_table.private_app"];
+    "module.environment.module.vpc.aws_route_table.private_db" [label="aws_route_table.private_db"];
+    "module.environment.module.vpc.aws_route_table.public" [label="aws_route_table.public"];
+    "module.environment.module.vpc.aws_route_table_association.private_app_a" [label="aws_route_table_association.private_app_a"];
+    "module.environment.module.vpc.aws_route_table_association.private_app_b" [label="aws_route_table_association.private_app_b"];
+    "module.environment.module.vpc.aws_route_table_association.private_db_a" [label="aws_route_table_association.private_db_a"];
+    "module.environment.module.vpc.aws_route_table_association.private_db_b" [label="aws_route_table_association.private_db_b"];
+    "module.environment.module.vpc.aws_route_table_association.public_a" [label="aws_route_table_association.public_a"];
+    "module.environment.module.vpc.aws_route_table_association.public_b" [label="aws_route_table_association.public_b"];
+    "module.environment.module.vpc.aws_subnet.private_app_a" [label="aws_subnet.private_app_a"];
+    "module.environment.module.vpc.aws_subnet.private_app_b" [label="aws_subnet.private_app_b"];
+    "module.environment.module.vpc.aws_subnet.private_db_a" [label="aws_subnet.private_db_a"];
+    "module.environment.module.vpc.aws_subnet.private_db_b" [label="aws_subnet.private_db_b"];
+    "module.environment.module.vpc.aws_subnet.public_a" [label="aws_subnet.public_a"];
+    "module.environment.module.vpc.aws_subnet.public_b" [label="aws_subnet.public_b"];
+    "module.environment.module.vpc.aws_vpc.main" [label="aws_vpc.main"];
+  }
+  "module.environment.module.alb.aws_lb.main" -> "module.environment.module.security_groups.aws_security_group.alb";
+  "module.environment.module.alb.aws_lb.main" -> "module.environment.module.vpc.aws_subnet.public_a";
+  "module.environment.module.alb.aws_lb.main" -> "module.environment.module.vpc.aws_subnet.public_b";
+  "module.environment.module.alb.aws_lb_listener.http" -> "module.environment.module.alb.aws_lb.main";
+  "module.environment.module.alb.aws_lb_target_group.ecs" -> "module.environment.module.vpc.aws_vpc.main";
+  "module.environment.module.cloudfront.aws_cloudfront_distribution.main" -> "module.environment.module.alb.aws_lb.main";
+  "module.environment.module.cloudwatch.aws_cloudwatch_dashboard.main" -> "module.environment.module.alb.aws_lb.main";
+  "module.environment.module.cloudwatch.aws_cloudwatch_dashboard.main" -> "module.environment.module.ecs.aws_ecs_service.app";
+  "module.environment.module.cloudwatch.aws_cloudwatch_dashboard.main" -> "module.environment.module.rds.aws_db_instance.main";
+  "module.environment.module.ecr.aws_ecr_lifecycle_policy.app" -> "module.environment.module.ecr.aws_ecr_repository.app";
+  "module.environment.module.ecs.aws_appautoscaling_policy.cpu" -> "module.environment.module.ecs.aws_appautoscaling_target.ecs";
+  "module.environment.module.ecs.aws_appautoscaling_policy.memory" -> "module.environment.module.ecs.aws_appautoscaling_target.ecs";
+  "module.environment.module.ecs.aws_appautoscaling_target.ecs" -> "module.environment.module.ecs.aws_ecs_service.app";
+  "module.environment.module.ecs.aws_ecs_service.app" -> "module.environment.module.alb.aws_lb_target_group.ecs";
+  "module.environment.module.ecs.aws_ecs_service.app" -> "module.environment.module.ecs.aws_ecs_cluster.main";
+  "module.environment.module.ecs.aws_ecs_service.app" -> "module.environment.module.ecs.aws_ecs_task_definition.app";
+  "module.environment.module.ecs.aws_ecs_service.app" -> "module.environment.module.security_groups.aws_security_group.ecs";
+  "module.environment.module.ecs.aws_ecs_service.app" -> "module.environment.module.vpc.aws_subnet.private_app_a";
+  "module.environment.module.ecs.aws_ecs_service.app" -> "module.environment.module.vpc.aws_subnet.private_app_b";
+  "module.environment.module.ecs.aws_ecs_task_definition.app" -> "module.environment.module.ecr.aws_ecr_repository.app";
+  "module.environment.module.ecs.aws_ecs_task_definition.app" -> "module.environment.module.ecs.aws_cloudwatch_log_group.ecs";
+  "module.environment.module.ecs.aws_ecs_task_definition.app" -> "module.environment.module.ecs.aws_iam_role.ecs_task_execution_role";
+  "module.environment.module.ecs.aws_iam_role_policy_attachment.ecs_execution" -> "module.environment.module.ecs.aws_iam_role.ecs_task_execution_role";
+  "module.environment.module.rds.data.aws_secretsmanager_secret_version.database" -> "module.environment.module.secrets_manager.aws_secretsmanager_secret.database";
+  "module.environment.module.rds.aws_db_instance.main" -> "module.environment.module.rds.data.aws_secretsmanager_secret_version.database";
+  "module.environment.module.rds.aws_db_instance.main" -> "module.environment.module.rds.aws_db_subnet_group.main";
+  "module.environment.module.rds.aws_db_instance.main" -> "module.environment.module.security_groups.aws_security_group.rds";
+  "module.environment.module.rds.aws_db_subnet_group.main" -> "module.environment.module.vpc.aws_subnet.private_db_a";
+  "module.environment.module.rds.aws_db_subnet_group.main" -> "module.environment.module.vpc.aws_subnet.private_db_b";
+  "module.environment.module.route53.aws_route53_record.root" -> "module.environment.module.cloudfront.aws_cloudfront_distribution.main";
+  "module.environment.module.route53.aws_route53_record.root" -> "module.environment.module.route53.aws_route53_zone.main";
+  "module.environment.module.s3.aws_s3_bucket_lifecycle_configuration.assets" -> "module.environment.module.s3.aws_s3_bucket.assets";
+  "module.environment.module.s3.aws_s3_bucket_public_access_block.assets" -> "module.environment.module.s3.aws_s3_bucket.assets";
+  "module.environment.module.s3.aws_s3_bucket_server_side_encryption_configuration.assets" -> "module.environment.module.s3.aws_s3_bucket.assets";
+  "module.environment.module.s3.aws_s3_bucket_versioning.assets" -> "module.environment.module.s3.aws_s3_bucket.assets";
+  "module.environment.module.secrets_manager.aws_secretsmanager_secret_version.database" -> "module.environment.module.secrets_manager.aws_secretsmanager_secret.database";
+  "module.environment.module.secrets_manager.aws_secretsmanager_secret_version.database" -> "module.environment.module.secrets_manager.random_password.db";
+  "module.environment.module.security_groups.aws_security_group.alb" -> "module.environment.module.vpc.aws_vpc.main";
+  "module.environment.module.security_groups.aws_security_group.ecs" -> "module.environment.module.security_groups.aws_security_group.alb";
+  "module.environment.module.security_groups.aws_security_group.rds" -> "module.environment.module.security_groups.aws_security_group.ecs";
+  "module.environment.module.vpc.aws_internet_gateway.main" -> "module.environment.module.vpc.aws_vpc.main";
+  "module.environment.module.vpc.aws_nat_gateway.main" -> "module.environment.module.vpc.aws_eip.nat";
+  "module.environment.module.vpc.aws_nat_gateway.main" -> "module.environment.module.vpc.aws_internet_gateway.main";
+  "module.environment.module.vpc.aws_nat_gateway.main" -> "module.environment.module.vpc.aws_subnet.public_a";
+  "module.environment.module.vpc.aws_route_table.private_app" -> "module.environment.module.vpc.aws_nat_gateway.main";
+  "module.environment.module.vpc.aws_route_table.private_db" -> "module.environment.module.vpc.aws_vpc.main";
+  "module.environment.module.vpc.aws_route_table.public" -> "module.environment.module.vpc.aws_internet_gateway.main";
+  "module.environment.module.vpc.aws_route_table_association.private_app_a" -> "module.environment.module.vpc.aws_route_table.private_app";
+  "module.environment.module.vpc.aws_route_table_association.private_app_a" -> "module.environment.module.vpc.aws_subnet.private_app_a";
+  "module.environment.module.vpc.aws_route_table_association.private_app_b" -> "module.environment.module.vpc.aws_route_table.private_app";
+  "module.environment.module.vpc.aws_route_table_association.private_app_b" -> "module.environment.module.vpc.aws_subnet.private_app_b";
+  "module.environment.module.vpc.aws_route_table_association.private_db_a" -> "module.environment.module.vpc.aws_route_table.private_db";
+  "module.environment.module.vpc.aws_route_table_association.private_db_a" -> "module.environment.module.vpc.aws_subnet.private_db_a";
+  "module.environment.module.vpc.aws_route_table_association.private_db_b" -> "module.environment.module.vpc.aws_route_table.private_db";
+  "module.environment.module.vpc.aws_route_table_association.private_db_b" -> "module.environment.module.vpc.aws_subnet.private_db_b";
+  "module.environment.module.vpc.aws_route_table_association.public_a" -> "module.environment.module.vpc.aws_route_table.public";
+  "module.environment.module.vpc.aws_route_table_association.public_a" -> "module.environment.module.vpc.aws_subnet.public_a";
+  "module.environment.module.vpc.aws_route_table_association.public_b" -> "module.environment.module.vpc.aws_route_table.public";
+  "module.environment.module.vpc.aws_route_table_association.public_b" -> "module.environment.module.vpc.aws_subnet.public_b";
+  "module.environment.module.vpc.aws_subnet.private_app_a" -> "module.environment.module.vpc.aws_vpc.main";
+  "module.environment.module.vpc.aws_subnet.private_app_b" -> "module.environment.module.vpc.aws_vpc.main";
+  "module.environment.module.vpc.aws_subnet.private_db_a" -> "module.environment.module.vpc.aws_vpc.main";
+  "module.environment.module.vpc.aws_subnet.private_db_b" -> "module.environment.module.vpc.aws_vpc.main";
+  "module.environment.module.vpc.aws_subnet.public_a" -> "module.environment.module.vpc.aws_vpc.main";
+  "module.environment.module.vpc.aws_subnet.public_b" -> "module.environment.module.vpc.aws_vpc.main";
+}
