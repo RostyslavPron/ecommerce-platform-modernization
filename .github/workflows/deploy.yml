@@ -1,0 +1,32 @@
+name: Deploy ECS Service
+
+on:
+  workflow_run:
+
+    workflows:
+      - Build and Push Image
+
+    types:
+      - completed
+
+jobs:
+
+  deploy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: us-east-1
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+      - name: Force New Deployment
+        run: |
+          aws ecs update-service \
+            --cluster ecommerce-modernization-cluster \
+            --service ecommerce-modernization-service \
+            --force-new-deployment

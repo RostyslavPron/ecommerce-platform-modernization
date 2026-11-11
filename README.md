@@ -108,3 +108,24 @@ Amazon S3
 - [ ] Monitoring & Alerting
 - [ ] Cost Optimization
 - [ ] Production Documentation
+
+## CI/CD Pipeline
+
+```text
+GitHub Push
+     ↓
+GitHub Actions
+     ↓
+Docker Build
+     ↓
+Amazon ECR
+     ↓
+Amazon ECS Fargate
+```
+
+Features:
+
+- Automated container build
+- Security-focused deployment process
+- Amazon ECR image management
+- ECS rolling deployments
