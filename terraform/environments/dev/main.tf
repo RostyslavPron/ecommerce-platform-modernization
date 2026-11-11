@@ -30,3 +30,9 @@ module "alb" {
 
   alb_security_group_id = module.security_groups.alb_security_group_id
 }
+
+module "ecr" {
+  source = "../../modules/ecr"
+
+  project_name = "ecommerce-modernization"
+}
