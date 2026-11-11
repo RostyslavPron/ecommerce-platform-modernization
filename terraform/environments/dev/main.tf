@@ -36,3 +36,22 @@ module "ecr" {
 
   project_name = "ecommerce-modernization"
 }
+
+module "ecs" {
+
+  source = "../../modules/ecs"
+
+  project_name = "ecommerce-modernization"
+
+  private_app_subnets =
+    module.vpc.private_app_subnets
+
+  ecs_security_group_id =
+    module.security_groups.ecs_security_group_id
+
+  target_group_arn =
+    module.alb.target_group_arn
+
+  ecr_repository_url =
+    module.ecr.repository_url
+}
