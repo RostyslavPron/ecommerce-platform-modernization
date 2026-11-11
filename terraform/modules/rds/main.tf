@@ -21,8 +21,8 @@ resource "aws_db_instance" "main" {
   storage_type      = "gp3"
 
   db_name  = "ecommerce"
-  username = "admin"
-  password = "ChangeMe123!"
+  username = local.db_credentials.username
+  password = local.db_credentials.password
 
   multi_az = true
 
@@ -46,4 +46,13 @@ resource "aws_db_instance" "main" {
   tags = {
     Name = "${var.project_name}-mysql"
   }
+}
+
+data "aws_secretsmanager_secret_version" "database" {
+  secret_id = var.database_secret_arn
+}
+
+locals {
+  db_credentials =
+    jsondecode(data.aws_secretsmanager_secret_version.database.secret_string)
 }

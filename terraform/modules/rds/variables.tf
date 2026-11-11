@@ -9,3 +9,7 @@ variable "private_db_subnets" {
 variable "rds_security_group_id" {
   type = string
 }
+
+variable "database_secret_arn" {
+  type = string
+}

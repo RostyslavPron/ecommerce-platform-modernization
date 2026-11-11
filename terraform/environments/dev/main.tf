@@ -75,3 +75,13 @@ module "s3" {
 
   project_name = "ecommerce-modernization"
 }
+
+module "secrets_manager" {
+
+  source = "../../modules/secrets-manager"
+
+  project_name = "ecommerce-modernization"
+}
+
+database_secret_arn =
+  module.secrets_manager.database_secret_arn
