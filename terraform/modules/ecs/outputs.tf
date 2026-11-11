@@ -17,3 +17,11 @@ output "cluster_name" {
 output "service_name" {
   value = aws_ecs_service.app.name
 }
+
+output "autoscaling_min_capacity" {
+  value = 2
+}
+
+output "autoscaling_max_capacity" {
+  value = 10
+}
