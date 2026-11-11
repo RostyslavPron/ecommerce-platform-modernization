@@ -106,3 +106,13 @@ database_secret_arn =
   rds_identifier =
     module.rds.identifier
 }
+
+module "cloudfront" {
+
+  source = "../../modules/cloudfront"
+
+  project_name = "ecommerce-modernization"
+
+  alb_dns_name =
+    module.alb.alb_dns_name
+}
