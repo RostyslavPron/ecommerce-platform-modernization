@@ -55,3 +55,16 @@ module "ecs" {
   ecr_repository_url =
     module.ecr.repository_url
 }
+
+module "rds" {
+
+  source = "../../modules/rds"
+
+  project_name = "ecommerce-modernization"
+
+  private_db_subnets =
+    module.vpc.private_db_subnets
+
+  rds_security_group_id =
+    module.security_groups.rds_security_group_id
+}
