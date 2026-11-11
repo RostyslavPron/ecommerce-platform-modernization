@@ -561,6 +561,7 @@ docs/migration-plan.md
 docs/rollback-plan.md
 docs/cost-analysis.md
 docs/case-study.md
+docs/backup-strategy.md
 ```
 
 ---
@@ -632,6 +633,7 @@ Potential future improvements include:
 - Implemented secure credential management
 - Automated deployments using CI/CD workflows
 - Produced migration, rollback, cost analysis, and case study documentation
+- Developed backup and disaster recovery planning documentation
 
 ---
 
