@@ -10,14 +10,6 @@ output "service_name" {
   value = aws_ecs_service.app.name
 }
 
-output "cluster_name" {
-  value = aws_ecs_cluster.main.name
-}
-
-output "service_name" {
-  value = aws_ecs_service.app.name
-}
-
 output "autoscaling_min_capacity" {
   value = 2
 }

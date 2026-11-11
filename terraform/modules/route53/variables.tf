@@ -1,5 +1,6 @@
 variable "domain_name" {
-  type = string
+  description = "Domain name for the application"
+  type        = string
 }
 
 variable "cloudfront_domain_name" {
@@ -8,9 +9,4 @@ variable "cloudfront_domain_name" {
 
 variable "cloudfront_hosted_zone_id" {
   type = string
-}
-
-variable "domain_name" {
-  description = "Domain name for the application"
-  type        = string
 }
