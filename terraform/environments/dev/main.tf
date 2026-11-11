@@ -18,3 +18,15 @@ module "security_groups" {
 
   vpc_id = module.vpc.vpc_id
 }
+
+module "alb" {
+  source = "../../modules/alb"
+
+  project_name = "ecommerce-modernization"
+
+  vpc_id = module.vpc.vpc_id
+
+  public_subnets = module.vpc.public_subnets
+
+  alb_security_group_id = module.security_groups.alb_security_group_id
+}
