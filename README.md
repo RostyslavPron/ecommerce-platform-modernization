@@ -16,6 +16,14 @@ The following diagram illustrates the target cloud architecture.
 
 ![Target AWS Architecture](diagrams/target-architecture.png)
 
+## Terraform Infrastructure Dependency Graph
+
+The Infrastructure as Code implementation was validated using Terraform dependency analysis.
+
+The graph below illustrates relationships between networking, security, compute, storage, monitoring, and DNS resources provisioned through reusable Terraform modules.
+
+![Terraform Architecture Graph](diagrams/terraform-architecture-graph.png)
+
 ---
 
 # Business Problem
@@ -427,7 +435,9 @@ Amazon CloudWatch provides centralized monitoring.
 
 Custom CloudWatch dashboards provide operational visibility across the platform.
 
--- Actions.
+---
+
+# CI/CD Pipeline
 
 ## Deployment Flow
 
@@ -478,13 +488,70 @@ docs/cost-analysis.md
 
 ---
 
-# Documentation
+# Terraform Validation
 
-## Architecture
+The Infrastructure as Code (IaC) implementation was validated using Terraform to verify module integration, dependency resolution, and configuration correctness.
+
+## Validation Result
+
+Terraform validation was successfully completed using:
+
+```bash
+terraform init
+terraform validate
+```
+
+Result:
 
 ```text
-docs/current-state.md
-docs/target-state.md
+Success! The configuration is valid.
+```
+
+### Terraform Validation Evidence
+
+![Terraform Validation](assets/screenshots/terraform-validate-success.png)
+
+---
+
+## Terraform Dependency Analysis
+
+Terraform dependency analysis was performed using:
+
+```bash
+terraform graph
+```
+
+The generated dependency graph confirmed relationships between:
+
+- Amazon VPC
+- Security Groups
+- Application Load Balancer
+- Amazon ECS Fargate
+- Amazon ECR
+- Amazon RDS MySQL
+- Amazon S3
+- AWS Secrets Manager
+- Amazon CloudWatch
+- Amazon CloudFront
+- Amazon Route 53
+
+### Terraform Dependency Graph
+
+![Terraform Dependency Graph](diagrams/terraform-architecture-graph.png)
+
+---
+
+## Validation Summary
+
+Completed validation activities:
+
+- ✅ Terraform provider initialization (`terraform init`)
+- ✅ Terraform configuration validation (`terraform validate`)
+- ✅ Terraform dependency graph generation (`terraform graph`)
+- ✅ Module dependency verification
+- ✅ Infrastructure dependency analysis
+
+These validation activities provide confidence that the Terraform implementation is syntactically correct, properly rget-state.md
 ```
 
 ## Planning
@@ -493,6 +560,7 @@ docs/target-state.md
 docs/migration-plan.md
 docs/rollback-plan.md
 docs/cost-analysis.md
+docs/case-study.md
 ```
 
 ---
@@ -506,11 +574,13 @@ ecommerce-platform-modernization/
 │   └── workflows/
 │
 ├── assets/
+│   └── screenshots/
 │
 ├── diagrams/
 │   ├── current-state-architecture.png
 │   ├── current-state-architecture.drawio
 │   ├── target-architecture.png
+│   ├── terraform-architecture-graph.png
 │   └── target-architecture.drawio
 │
 ├── docs/
@@ -518,7 +588,8 @@ ecommerce-platform-modernization/
 │   ├── target-state.md
 │   ├── migration-plan.md
 │   ├── rollback-plan.md
-│   └── cost-analysis.md
+│   ├── cost-analysis.md
+│   └── case-study.md
 │
 ├── legacy-environment/
 │
@@ -552,12 +623,15 @@ Potential future improvements include:
 - Simulated an on-premises environment using Docker
 - Designed a production-style AWS architecture
 - Implemented Infrastructure as Code using Terraform
+- Built reusable Terraform modules
+- Successfully validated Terraform configuration
+- Generated and analyzed Terraform dependency graphs
 - Built containerized deployment workflows
 - Enabled auto scaling and high availability
 - Integrated monitoring and observability
 - Implemented secure credential management
 - Automated deployments using CI/CD workflows
-- Produced migration, rollback, and cost planning documentation
+- Produced migration, rollback, cost analysis, and case study documentation
 
 ---
 
