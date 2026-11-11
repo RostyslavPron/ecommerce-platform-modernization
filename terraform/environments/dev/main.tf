@@ -10,3 +10,11 @@ module "vpc" {
     "us-east-1b"
   ]
 }
+
+module "security_groups" {
+  source = "../../modules/security-groups"
+
+  project_name = "ecommerce-modernization"
+
+  vpc_id = module.vpc.vpc_id
+}
